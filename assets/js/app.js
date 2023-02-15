@@ -364,8 +364,43 @@ function buildLoadingScreen() {
 }
 
 function buildDayView() {
-    console.log('buildDayView: ' + dayData[0]);
-    myApp.innerHTML = "<h1>day</h1>"
+    //console.log('buildDayView: ' + dayData[0]);
+
+
+    myApp.innerHTML = "day wiew implementation"
+
+    myDay = dayData[currentViewTime];
+
+    let mydayElement = document.createElement('h2');
+    mydayElement.innerText = myDay.hour;
+
+    let myTemperatureElement = document.createElement('h3');
+    myTemperatureElement.innerText = myDay.temperature;
+
+    let myFeelsLikeElement = document.createElement('h3');
+    myFeelsLikeElement.innerText = myDay.feelsLike;
+
+    let myWindDirectionElement = document.createElement('div');
+    myWindDirectionElement.innerText = myDay.windDirection;
+
+    let MyWindStrength = document.createElement('p');
+    MyWindStrength.innerText = myDay.windSpeed;
+
+    myWindDirectionElement.appendChild(MyWindStrength);
+
+
+    let myWeatherTypeElement = document.createElement('h3');
+    myWeatherTypeElement.innerText = myDay.weatherCode;
+
+
+    myApp.appendChild(mydayElement);
+    myApp.appendChild(myTemperatureElement);
+    myApp.appendChild(myFeelsLikeElement);
+
+    myApp.appendChild(myWeatherTypeElement);
+    myApp.appendChild(myWindDirectionElement);
+
+
 
 }
 
@@ -373,6 +408,8 @@ function buildDayView() {
 function buildWeekView() {
     console.log('buildWeekView: ' + weekData[0]);
     myApp.innerHTML = "<h1>week</h1>"
+
+
 
 }
 
