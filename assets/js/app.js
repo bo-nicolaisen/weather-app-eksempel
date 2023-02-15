@@ -15,16 +15,18 @@ function initApp() {
     myApp = document.getElementById('app');
     buildLoadingScreen();
 
-    fetchData();
+    prepareUrl();
 }
 
 
 
 // controller code --------------------------------------------------------------------------
 
-async function fetchData() {
+async function prepareUrl() {
     // hent data fra open meto
-    console.log('fetch data');
+    console.log('prep url data');
+
+
 
     //dummy code
     let myLoadTime = 2000;
@@ -447,7 +449,32 @@ function buildWeekView() {
 
 
 
-// scg sources
+// fun 
+
+
+
+
+//Load Data function controller
+function fetchData(myUrl) {
+
+    fetch(myUrl)
+        .then((response) => {
+            //return response.text();
+            return response.json();
+        })
+        .then((data) => {
+            // do something with 'data'
+            let myData = JSON.parse(data);
+
+            dataConversion(myData);
+
+            //buildDayView(myData);
+        })
+        .catch(error => {
+            throw (error);
+        }
+        );
+}
 
 
 
