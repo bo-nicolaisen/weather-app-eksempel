@@ -17,6 +17,8 @@ body {
   overflow: hidden;
 }
 
+/* CSS for dayView--------------------------------  */
+
 #windContainer {
   width: 20%;
   position: relative;
