@@ -355,42 +355,65 @@ function makeDayData(rawData) {
 
 
 
-// view code ----------------------------------------------------------------------------------------
-function buildLoadingScreen() {
 
+// view code ----------------------------------------------------------------------------------------
+
+function clearApp() {
+    myApp.innerHTML = "";
+}
+
+
+function buildLoadingScreen() {
+    clearApp();
     console.log('buildLoadingScreen: ' + myApp);
 
     myApp.innerHTML = "<h1>loading</h1>";
 }
 
+
+
 function buildDayView() {
-    //console.log('buildDayView: ' + dayData[0]);
+    clearApp();
+
+    let myDay = dayData[currentViewTime];
+
+    let actualHour = new Date().getHours();
+    let myLocation = 'Allborg';
 
 
-    myApp.innerHTML = "day wiew implementation"
 
-    myDay = dayData[currentViewTime];
+    let myWeatherTypeElement = document.createElement('img');
+    let myImage = `assets/img/weatherCodes/${myDay.weatherCode}.png`;
+    myWeatherTypeElement.src = myImage;
+
+
+
 
     let mydayElement = document.createElement('h2');
-    mydayElement.innerText = myDay.hour;
+    mydayElement.innerText = `${myLocation} idag kl: ${actualHour + myDay.hour}`;
 
     let myTemperatureElement = document.createElement('h3');
-    myTemperatureElement.innerText = myDay.temperature;
+    myTemperatureElement.innerText = `${myDay.temperature}\xB0`;
 
-    let myFeelsLikeElement = document.createElement('h3');
-    myFeelsLikeElement.innerText = myDay.feelsLike;
-
-    let myWindDirectionElement = document.createElement('div');
-    myWindDirectionElement.innerText = myDay.windDirection;
-
-    let MyWindStrength = document.createElement('p');
-    MyWindStrength.innerText = myDay.windSpeed;
-
-    myWindDirectionElement.appendChild(MyWindStrength);
+    let myFeelsLikeElement = document.createElement('h4');
+    myFeelsLikeElement.innerText = `Føles som ${myDay.feelsLike}\xB0`;
 
 
-    let myWeatherTypeElement = document.createElement('h3');
-    myWeatherTypeElement.innerText = myDay.weatherCode;
+
+    let myWindElement = document.createElement('figure');
+    myWindElement.id = "windContainer";
+
+    let myWindDirectionElement = document.createElement('img');
+    myWindDirectionElement.src = 'assets/img/icons/winddirection.svg';
+    myWindDirectionElement.style.transform = `rotate(${myDay.windDirection}deg)`;
+    myWindDirectionElement.id = "windDirection";
+
+    let MyWindStrength = document.createElement('h4');
+    MyWindStrength.innerText = `${myDay.windSpeed} m/s`;
+    MyWindStrength.id = "windSpeed";
+
+    myWindElement.appendChild(myWindDirectionElement);
+    myWindElement.appendChild(MyWindStrength);
 
 
     myApp.appendChild(mydayElement);
@@ -398,21 +421,33 @@ function buildDayView() {
     myApp.appendChild(myFeelsLikeElement);
 
     myApp.appendChild(myWeatherTypeElement);
-    myApp.appendChild(myWindDirectionElement);
+    myApp.appendChild(myWindElement);
 
-
+    myApp.addEventListener('pointerdown', pointerDownOnDay);
 
 }
+
+function pointerDownOnDay(e) {
+    console.log("down");
+    currentViewTime++;
+
+    buildDayView();
+}
+
+
+
 
 
 function buildWeekView() {
     console.log('buildWeekView: ' + weekData[0]);
-    myApp.innerHTML = "<h1>week</h1>"
-
+    myApp.innerHTML = "<h1>week</h1>";
 
 
 }
 
+
+
+// scg sources
 
 
 
