@@ -449,32 +449,7 @@ function buildWeekView() {
 
 
 
-// fun 
-
-
-
-
-//Load Data function controller
-function fetchData(myUrl) {
-
-    fetch(myUrl)
-        .then((response) => {
-            //return response.text();
-            return response.json();
-        })
-        .then((data) => {
-            // do something with 'data'
-            let myData = JSON.parse(data);
-
-            dataConversion(myData);
-
-            //buildDayView(myData);
-        })
-        .catch(error => {
-            throw (error);
-        }
-        );
-}
+// implement fetch fra open meto
 
 
 
