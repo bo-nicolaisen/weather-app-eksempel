@@ -442,7 +442,7 @@ function pointerDownOnDay(e) {
 
 function buildWeekView() {
     console.log('buildWeekView: ' + weekData[0]);
-    myApp.innerHTML = "<h1>week</h1>";
+    myApp.innerHTML = "<h1>week view</h1>";
 
 
 }
